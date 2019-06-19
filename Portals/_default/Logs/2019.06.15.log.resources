@@ -1,0 +1,51 @@
+2019-06-15 14:05:29,992 [Keeks][Thread:64][ERROR] DotNetNuke.Web.UI.Utilities - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2019-06-15 14:05:32,133 [Keeks][Thread:64][ERROR] DotNetNuke.Services.Localization.LocalizationProvider - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Common.Globals.get_Status()
+   at DotNetNuke.Services.Localization.LocaleController.GetLocales(Int32 portalID)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(Int32 portalID, String code)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(String code)
+   at DotNetNuke.Services.Localization.LocalizationProvider.TryGetStringInternal(String key, String userLanguage, String resourceFile, PortalSettings portalSettings, String& resourceValue)
+2019-06-15 14:05:32,267 [Keeks][Thread:64][ERROR] DotNetNuke.Services.Localization.LocalizationProvider - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Common.Globals.get_Status()
+   at DotNetNuke.Services.Localization.LocaleController.GetLocales(Int32 portalID)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(Int32 portalID, String code)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(String code)
+   at DotNetNuke.Services.Localization.LocalizationProvider.TryGetStringInternal(String key, String userLanguage, String resourceFile, PortalSettings portalSettings, String& resourceValue)
+2019-06-15 14:58:52,847 [Keeks][Thread:63][ERROR] DotNetNuke.Web.UI.Utilities - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2019-06-15 14:58:53,865 [Keeks][Thread:63][ERROR] DotNetNuke.Services.Localization.LocalizationProvider - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Common.Globals.get_Status()
+   at DotNetNuke.Services.Localization.LocaleController.GetLocales(Int32 portalID)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(Int32 portalID, String code)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(String code)
+   at DotNetNuke.Services.Localization.LocalizationProvider.TryGetStringInternal(String key, String userLanguage, String resourceFile, PortalSettings portalSettings, String& resourceValue)
+2019-06-15 14:58:53,882 [Keeks][Thread:63][ERROR] DotNetNuke.Services.Localization.LocalizationProvider - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Common.Globals.get_Status()
+   at DotNetNuke.Services.Localization.LocaleController.GetLocales(Int32 portalID)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(Int32 portalID, String code)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(String code)
+   at DotNetNuke.Services.Localization.LocalizationProvider.TryGetStringInternal(String key, String userLanguage, String resourceFile, PortalSettings portalSettings, String& resourceValue)
+2019-06-15 14:59:49,311 [Keeks][Thread:66][ERROR] DotNetNuke.Web.UI.Utilities - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Web.UI.Utilities.ApplySkin(Control telerikControl, String fallBackEmbeddedSkinName, String controlName, String webControlSkinSubFolderName)
+2019-06-15 14:59:50,136 [Keeks][Thread:66][ERROR] DotNetNuke.Services.Localization.LocalizationProvider - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Common.Globals.get_Status()
+   at DotNetNuke.Services.Localization.LocaleController.GetLocales(Int32 portalID)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(Int32 portalID, String code)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(String code)
+   at DotNetNuke.Services.Localization.LocalizationProvider.TryGetStringInternal(String key, String userLanguage, String resourceFile, PortalSettings portalSettings, String& resourceValue)
+2019-06-15 14:59:50,153 [Keeks][Thread:66][ERROR] DotNetNuke.Services.Localization.LocalizationProvider - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.Common.Globals.get_Status()
+   at DotNetNuke.Services.Localization.LocaleController.GetLocales(Int32 portalID)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(Int32 portalID, String code)
+   at DotNetNuke.Services.Localization.LocaleController.GetLocale(String code)
+   at DotNetNuke.Services.Localization.LocalizationProvider.TryGetStringInternal(String key, String userLanguage, String resourceFile, PortalSettings portalSettings, String& resourceValue)

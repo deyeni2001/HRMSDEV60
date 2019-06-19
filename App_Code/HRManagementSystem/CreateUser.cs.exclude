@@ -1,0 +1,182 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Reflection;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+
+using DotNetNuke;
+using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Entities.Modules.Actions;
+using DotNetNuke.Security;
+using DotNetNuke.Services.Exceptions;
+using DotNetNuke.Services.Localization;
+using System.Web.SessionState;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Net.Mail;
+using DotNetNuke.Entities.Users;
+using DotNetNuke.Security.Roles;
+using DotNetNuke.Security.Membership;
+using AspNetSecurity = System.Web.Security;
+using ola.HRMangmntSyst;
+
+namespace ola.HRMangmntSyst
+{
+
+    /// <summary>
+    /// Summary description for CreateUser
+    /// </summary>
+    public class CreateUser: PortalModuleBase, IActionable
+    {
+        string passport;
+        string filepath2;
+        int applicantID;
+        int employeeID;
+        int uid;
+        string employeeNum;
+        DataTable dt1 = new DataTable();
+        bool flag = false;
+
+
+        UserController objUserController = new UserController();
+
+        RoleController objRoleController = new RoleController();
+
+        #region Optional Interfaces
+        public ModuleActionCollection ModuleActions
+        {
+            get
+            {
+                ModuleActionCollection Actions = new ModuleActionCollection();
+                Actions.Add(this.GetNextActionID(), Localization.GetString(ModuleActionType.AddContent, this.LocalResourceFile), ModuleActionType.AddContent, "", "", this.EditUrl(), false, SecurityAccessLevel.Edit, true, false);
+                return Actions;
+            }
+
+        }
+        #endregion
+    
+        public CreateUser()
+        {
+            //
+            // TODO: Add constructor logic here
+            //
+        }
+
+        private int CreateUser(int EmployeeID, string LastName, string Email)
+        {
+            int uId = 0;
+            try
+            {
+
+                PortalSecurity objSecurity = new PortalSecurity();
+                ModuleController objModules = new ModuleController();
+
+                EmployeeDetailsInfo objEmployeeInfo = new EmployeeDetailsInfo();
+                EmployeeDetailsController objEmployeeController = new EmployeeDetailsController();
+
+
+
+                objEmployeeInfo = (new EmployeeDetailsController()).Get(EmployeeID);
+                string EmployeePassword = "password";
+                string username = Email;// objCustomerInfo.EMAIL;
+
+                //UserInfo objUserInfo = new UserInfo();
+                //UserController objUserController = new UserController();
+
+                UserInfo objUserInfo = this.objUserController.GetUserByUsername(PortalId, username);
+
+                //erInfo objUserInfo = objUserController.GetUserByUsername(PortalId, username);
+                //UserInfo objUserInfo = this.objUserController.GetUserByUsername(PortalId, username);
+                if (objUserInfo != null)
+                    return -1;
+
+                objUserInfo = new UserInfo();
+                objUserInfo.PortalID = PortalId;
+                objUserInfo.Profile.FirstName = objEmployeeInfo.FirstName;
+                objUserInfo.Profile.LastName = objEmployeeInfo.LastName;
+
+                //objUserInfo.Membership.Email = objCustomerInfo.EMAIL;
+                //objUserInfo.Membership.Username = username;
+                objUserInfo.Email = objEmployeeInfo.Email;
+                objUserInfo.Username = username;
+                objUserInfo.Membership.Password = EmployeePassword;
+
+                objUserInfo.Membership.Approved = true;
+
+                DotNetNuke.Security.Membership.UserCreateStatus bol;
+                bol = UserController.CreateUser(ref objUserInfo);
+                if (objUserInfo.UserID > 0)
+                {
+                    uId = objUserInfo.UserID;
+                    objEmployeeInfo.EmployeeUserID_FK = objUserInfo.UserID;
+                    (new EmployeeDetailsController()).Update(objEmployeeInfo);//////////////problem////////////////////////////
+                    DotNetNuke.Services.Log.EventLog.EventLogController
+        objEventLog = new DotNetNuke.Services.Log.EventLog.EventLogController();
+                    objEventLog.AddLog(objUserInfo, PortalSettings, UserId,
+        username,
+        DotNetNuke.Services.Log.EventLog.EventLogController.EventLogType.USER_CREATED);
+
+                    //send notification to portal administrator of new user  registration//
+                    //(PortalSettings.DefaultLanguage, PortalSettings,  "EMAIL_USER_REGISTRATION_ADMINISTRATOR_SUBJECT", objNewUser),  
+                    //DotNetNuke.Services.Localization.Localization.GetSystemMessage(PortalSettings.DefaultLanguage, PortalSettings, 
+                    //  "EMAIL_USER_REGISTRATION_ADMINISTRATOR_BODY", objNewUser), "", "", "", "", "",  "");
+
+                    //complete registration
+                    string strMessage = "";
+                    switch (PortalSettings.UserRegistration)
+                    {
+                        case
+        (int)DotNetNuke.Common.Globals.PortalRegistrationType.PrivateRegistration:
+                            strMessage =
+        string.Format(DotNetNuke.Services.Localization.Localization.GetString("PrivateConfirmationMessage", this.LocalResourceFile),
+        objEmployeeInfo.Email);
+                            break;
+                        case
+        (int)DotNetNuke.Common.Globals.PortalRegistrationType.PublicRegistration:
+                            objSecurity.UserLogin(username, EmployeePassword, PortalSettings.PortalId, PortalSettings.PortalName, "", false);
+                            //objSecurity.UserLogin(username, "xportal",  
+                            //rtalSettings.PortalId, PortalSettings.PortalName, "", false);
+
+                            break;
+                        case
+        (int)DotNetNuke.Common.Globals.PortalRegistrationType.VerifiedRegistration:
+                            strMessage =
+        string.Format(DotNetNuke.Services.Localization.Localization.GetString("VerifiedConfirmationMessage", this.LocalResourceFile),
+        objEmployeeInfo.Email);
+                            break;
+                    }
+
+
+                    // int id = (objRoleController.GetRoleByName(PortalId, "Employee").RoleID);
+                    int id = this.objRoleController.GetRoleByName(PortalId, "Employee").RoleID;
+                    objRoleController.AddUserRole(PortalId, objUserInfo.UserID, id, Null.NullDate);
+
+                    //objRoleController.AddUserRole(PortalId, objUserInfo.UserID, id, Null.NullDate);
+                    //objStudentInfo.USER_ID = objUserInfo.UserID;
+                    //objStudentController.Update(objStudentInfo);
+                }
+                else
+                {
+                    AspNetSecurity.MembershipCreateStatus UserRegistrationStatus;
+                    UserRegistrationStatus =
+        ((AspNetSecurity.MembershipCreateStatus)(objUserInfo.UserID * -1));
+                    // UserController objUserController = new UserController();
+                }
+            }
+            catch (Exception ex)
+            {
+                //XP.Logger.WriteLog(ex.Message + " ---> " + ex.StackTrace);
+            }
+            return uId;
+
+        }
+
+    }
+}

@@ -1,0 +1,17 @@
+2019-05-31 14:24:26,442 [Keeks][Thread:6][ERROR] DotNetNuke.Framework.Reflection - Could not load type 'SupervisorPage.ascx'.
+System.Web.HttpException: Could not load type 'SupervisorPage.ascx'.
+   at System.Web.Compilation.BuildManager.GetType(String typeName, Boolean throwOnError, Boolean ignoreCase)
+   at DotNetNuke.Framework.Reflection.CreateType(String TypeName, String CacheKey, Boolean UseCache, Boolean IgnoreErrors)
+2019-05-31 14:24:26,792 [Keeks][Thread:6][ERROR] DotNetNuke.Framework.Reflection - Could not load type 'EmployeePage.ascx'.
+System.Web.HttpException: Could not load type 'EmployeePage.ascx'.
+   at System.Web.Compilation.BuildManager.GetType(String typeName, Boolean throwOnError, Boolean ignoreCase)
+   at DotNetNuke.Framework.Reflection.CreateType(String TypeName, String CacheKey, Boolean UseCache, Boolean IgnoreErrors)
+2019-05-31 14:24:27,006 [Keeks][Thread:6][ERROR] DotNetNuke.Framework.Reflection - Could not load type 'HODPage.ascx'.
+System.Web.HttpException: Could not load type 'HODPage.ascx'.
+   at System.Web.Compilation.BuildManager.GetType(String typeName, Boolean throwOnError, Boolean ignoreCase)
+   at DotNetNuke.Framework.Reflection.CreateType(String TypeName, String CacheKey, Boolean UseCache, Boolean IgnoreErrors)
+2019-05-31 14:33:15,063 [Keeks][Thread:8][ERROR] DotNetNuke.UI.Modules.ModuleHost - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.UI.Modules.ModuleHost.LoadModuleControl()
+2019-05-31 14:33:15,153 [Keeks][Thread:8][ERROR] DotNetNuke.UI.Modules.ModuleHost - FriendlyMessage="Error: Organisational Chart is currently unavailable." ctrl="DotNetNuke.UI.Modules.ModuleControlBase" exc="System.NullReferenceException: Object reference not set to an instance of an object.
+   at DotNetNuke.UI.Modules.ModuleHost.LoadModuleControl()"

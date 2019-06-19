@@ -1,0 +1,12 @@
+2019-06-19 12:19:46,638 [Keeks][Thread:8][ERROR] DotNetNuke.Framework.Reflection - Could not load type 'SupervisorPage.ascx'.
+System.Web.HttpException: Could not load type 'SupervisorPage.ascx'.
+   at System.Web.Compilation.BuildManager.GetType(String typeName, Boolean throwOnError, Boolean ignoreCase)
+   at DotNetNuke.Framework.Reflection.CreateType(String TypeName, String CacheKey, Boolean UseCache, Boolean IgnoreErrors)
+2019-06-19 12:19:47,043 [Keeks][Thread:8][ERROR] DotNetNuke.Framework.Reflection - Could not load type 'EmployeePage.ascx'.
+System.Web.HttpException: Could not load type 'EmployeePage.ascx'.
+   at System.Web.Compilation.BuildManager.GetType(String typeName, Boolean throwOnError, Boolean ignoreCase)
+   at DotNetNuke.Framework.Reflection.CreateType(String TypeName, String CacheKey, Boolean UseCache, Boolean IgnoreErrors)
+2019-06-19 12:19:47,331 [Keeks][Thread:8][ERROR] DotNetNuke.Framework.Reflection - Could not load type 'HODPage.ascx'.
+System.Web.HttpException: Could not load type 'HODPage.ascx'.
+   at System.Web.Compilation.BuildManager.GetType(String typeName, Boolean throwOnError, Boolean ignoreCase)
+   at DotNetNuke.Framework.Reflection.CreateType(String TypeName, String CacheKey, Boolean UseCache, Boolean IgnoreErrors)
